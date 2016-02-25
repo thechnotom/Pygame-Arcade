@@ -13,7 +13,7 @@ from Arcade import arcade
 
 '''
 If you want to make a game with classes, I'll assume you don't
-need an example. If you want help with this, ask.
+need an example. If you want help with this, ask please.
 
 Here is an example of a very simple game running as a procedure:
 
@@ -72,7 +72,6 @@ def Game():
 # equal to __main__, and your code will run. Otherwise, your code will
 # be handled by the arcade file.
 if __name__ == '__main__':
-
     #initializes pygame and mixer
     pygame.init()
     pygame.mixer.init(22050,-16,2,1024)
@@ -81,7 +80,7 @@ if __name__ == '__main__':
 
     # Run procedures and/or classes here
     # Example:
-    #Game()
+    # Game()
 
 
 
