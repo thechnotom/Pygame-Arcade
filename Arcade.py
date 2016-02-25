@@ -15,7 +15,7 @@ class arcade:
         pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\window_icon.png').convert_alpha())
         print('init ran')
 
-    def InputEvents():
+    def InputEvents(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
