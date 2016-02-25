@@ -43,7 +43,7 @@ class arcade:
         return pygame.image.load(os.getcwd() + '\\resources\\'.join(file))
 
     def GetSound(file):
-        return pygame.mixer.Sound(file)
+        return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file))
 
     def isColliding(obj1,obj2):
         return obj1.colliderect(obj2)
