@@ -47,7 +47,7 @@ class arcade:
         return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
     
     def isColliding(obj1,obj2):
-        return obj1.colliderect(obj2)
+        return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
 
     def Draw(self, *args): #arg is (object, x, y)
         update_areas = []
