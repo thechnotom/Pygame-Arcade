@@ -13,7 +13,6 @@ class arcade:
         screen_x, screen_y = 600, 600
         self.screen = pygame.display.set_mode((screen_x,screen_y),flags)
         pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\window_icon.png').convert_alpha())
-        print('init ran')
 
     def InputEvents(self):
         for event in pygame.event.get():
