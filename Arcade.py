@@ -19,6 +19,7 @@ class arcade:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
         pygame.event.pump()
 
     def UI(self, x):
@@ -85,7 +86,7 @@ if __name__ == '__main__':
     pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
     last = pygame.time.get_ticks()
-    cooldown = 300    
+    cooldown = 30    
     i = 0
     while True:
         now = pygame.time.get_ticks()
