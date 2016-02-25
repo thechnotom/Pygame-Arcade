@@ -21,8 +21,10 @@ class arcade:
                 pygame.quit()
         pygame.event.pump()
 
-    def UI():
-        pass
+    def UI(self):
+        news = pygame.Surface((600,600))
+        news.fill((255,255,255),(10,10,10,10))
+        arcade.Draw((news, 0, 0))
 
     #Framework
     def GetEvent():
@@ -85,10 +87,9 @@ if __name__ == '__main__':
     arcade = arcade()
 
 
-    news = pygame.Surface((600,600))
-    news.fill((255,255,255),(10,10,10,10))
+    
     while True:
-        arcade.Draw((news, 0, 0))
+        arcade.UI()
         arcade.InputEvents()
 
 
