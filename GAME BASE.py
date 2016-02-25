@@ -17,7 +17,7 @@ need an example. If you want help with this, ask.
 
 Here is an example of a very simple game running as a procedure:
 
-def Game():
+def Game(arcade):
 
     # For pictures files: .png; .jpg; .gif; .bmp
     picture = arcade.GetImage('picture_filename.png')
@@ -78,10 +78,11 @@ if __name__ == '__main__':
     pygame.mixer.init(22050,-16,2,1024)
     #Gives your game window a caption. The file name is the caption.
     pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
+    
 
     # Run procedures and/or classes here
     # Example:
-    #Game()
+    #Game(arcade())
 
 
 

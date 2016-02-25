@@ -29,7 +29,7 @@ class arcade:
     def GetEvent():
         return pygame.events.get()
 
-    def GetKey():
+    def GetKey(self):
         return pygame.key.get_pressed()
 
     def GetMousePos():
@@ -47,20 +47,19 @@ class arcade:
     def isColliding(obj1,obj2):
         return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
 
-    def Draw(self, *args): #arg is (object, x, y)
+    def Draw(self, background, *args): #arg is (object, x, y)
         global previous_areas
         update_areas = []
-        news = pygame.Surface((600,600))
-        news.fill((0,0,0),(0,0,600,600))
-        self.screen.blit(news, (0, 0))
+        self.screen.blit(background, (0, 0))
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
             area = pygame.Surface.get_rect(arg[0])
             area[0], area[1] = arg[1], arg[2]
             update_areas.append(area)
+            
         pygame.display.update(update_areas) #only update areas that requires it
         pygame.display.update(previous_areas)
-        previous_areas = update_areas
+        previous_areas = update_areas[:]
 
     def returnToArcade():
         arcade().UI()
