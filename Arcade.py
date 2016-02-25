@@ -76,7 +76,6 @@ class arcade:
         arcade().UI()
 
 
-
 if __name__ == '__main__':
     #If arcade.py is executed, open game selector UI
     #All games are executable as a standalone game.
@@ -85,8 +84,6 @@ if __name__ == '__main__':
     pygame.mixer.init(22050,-16,2,1024)
     pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
-
-
     
     while True:
         arcade.UI()
