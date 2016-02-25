@@ -33,8 +33,8 @@ def Game(arcade):
                 player_x += 5
 
             
-
-            arcade.Draw(background,(player, player_x, player_y),
+            arcade.DrawBackground(background)
+            arcade.Draw((player, player_x, player_y),
                         (ball, ball_x, ball_y))
 
 if __name__ == '__main__':

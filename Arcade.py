@@ -47,10 +47,12 @@ class arcade:
     def isColliding(obj1,obj2):
         return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
 
-    def Draw(self, background, *args): #arg is (object, x, y)
+    def DrawBackground(self, background):
+        self.screen.blit(background, (0, 0))
+
+    def Draw(self, *args): #arg is (object, x, y)
         global previous_areas
         update_areas = []
-        self.screen.blit(background, (0, 0))
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
             area = pygame.Surface.get_rect(arg[0])
