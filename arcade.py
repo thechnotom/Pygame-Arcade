@@ -38,7 +38,7 @@ class arcade:
         return pygame.mouse.get_pressed()
     
     def GetImage(file):
-        return pygame.image.load(file)
+        return pygame.image.load(os.getcwd() + '\\resources\\'.join(file))
     
     def GetSound(file):
         return pygame.mixer.Sound(file)
@@ -48,6 +48,7 @@ class arcade:
 
 
     def Draw(self, *args): #arg is (object, x, y)
+        update_areas = []
         for arg in args:
             print(arg)
             self.screen.blit(arg[0],(arg[1],arg[2]))
@@ -67,7 +68,11 @@ class arcade:
         oldrects = rects[:]
         for rect in rects:
             screen.blit(bgimg, rect, rect)
-        '''    
+        '''
+
+    def returnToArcade():
+        arcade()
+        
         
 
 if __name__ == '__main__':
