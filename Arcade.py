@@ -19,6 +19,7 @@ class arcade:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
         pygame.event.pump()
 
     def UI(self, x):
