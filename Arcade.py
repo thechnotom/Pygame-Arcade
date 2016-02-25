@@ -76,7 +76,7 @@ if __name__ == '__main__':
     arcade = arcade()
     last = pygame.time.get_ticks()
     cooldown = 30   
-    i = 0
+
     while True:
         now = pygame.time.get_ticks()
         if now - last >= cooldown:
