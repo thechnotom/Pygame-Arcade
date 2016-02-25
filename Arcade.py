@@ -89,6 +89,6 @@ if __name__ == '__main__':
     news.fill((255,255,255),(10,10,10,10))
     while True:
         arcade.Draw((news, 0, 0))
-        arcade.InputEvents
+        arcade.InputEvents()
 
 
