@@ -64,21 +64,6 @@ class arcade:
         pygame.display.update(previous_areas)
         previous_areas = update_areas
 
-        '''
-        events = pygame.events.get()
-        for event in events:
-            # deal with events
-        pygame.event.pump()
-        my_sprites.do_stuff_every_loop()
-        rects = my_sprites.draw()
-        activerects = rects + oldrects
-        activerects = filter(bool, activerects)
-        pygame.display.update(activerects)
-        oldrects = rects[:]
-        for rect in rects:
-            screen.blit(bgimg, rect, rect)
-        '''
-
     def returnToArcade():
         arcade().UI()
 
