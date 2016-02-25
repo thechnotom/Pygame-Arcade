@@ -3,7 +3,7 @@
 # 2016
 # A collection of games built using pygame by the ICS4U-02 class, all running in a virtual arcade.
 
-import pygame, sys, os
+import pygame, sys, os, time
 from pygame.locals import *
 
 class arcade:
@@ -21,10 +21,10 @@ class arcade:
                 pygame.quit()
         pygame.event.pump()
 
-    def UI(self):
-        news = pygame.Surface((600,600))
-        news.fill((255,255,255),(10,10,10,10))
-        arcade.Draw((news, 0, 0))
+    def UI(self, x):
+        news = pygame.Surface((10,10))
+        news.fill((255,255,255),(0,0,10,10))
+        arcade.Draw((news, x, 0))
 
     #Framework
     def GetEvent():
@@ -48,14 +48,15 @@ class arcade:
     def isColliding(obj1,obj2):
         return obj1.colliderect(obj2)
 
-
     def Draw(self, *args): #arg is (object, x, y)
         update_areas = []
         for arg in args:
-            print(arg)
             self.screen.blit(arg[0],(arg[1],arg[2]))
-            update_areas.append(pygame.Surface.get_rect(arg[0]))
+            area = pygame.Surface.get_rect(arg[0])
+            area[0], area[1] = arg[1], arg[2]
+            update_areas.append(area)
         pygame.display.update(update_areas) #only update areas that requires it
+        time.sleep(.01)
 
         '''
         events = pygame.events.get()
@@ -84,9 +85,10 @@ if __name__ == '__main__':
     pygame.mixer.init(22050,-16,2,1024)
     pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
-    
+    i = 0
     while True:
-        arcade.UI()
+        arcade.UI(i)
+        i += 1
         arcade.InputEvents()
 
 
