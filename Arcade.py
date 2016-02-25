@@ -3,7 +3,7 @@
 # 2016
 # A collection of games built using pygame by the ICS4U-02 class, all running in a virtual arcade.
 
-import pygame, sys, os, time
+import pygame, sys, os
 from pygame.locals import *
 
 class arcade:
@@ -56,7 +56,6 @@ class arcade:
             area[0], area[1] = arg[1], arg[2]
             update_areas.append(area)
         pygame.display.update(update_areas) #only update areas that requires it
-        time.sleep(.01)
 
         '''
         events = pygame.events.get()
@@ -85,10 +84,15 @@ if __name__ == '__main__':
     pygame.mixer.init(22050,-16,2,1024)
     pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
+    last = pygame.time.get_ticks()
+    cooldown = 300    
     i = 0
     while True:
-        arcade.UI(i)
-        i += 1
-        arcade.InputEvents()
+        now = pygame.time.get_ticks()
+        if now - last >= cooldown:
+            last = now
+            arcade.UI(i)
+            i += 1
+            arcade.InputEvents()
 
 
