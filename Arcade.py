@@ -73,7 +73,7 @@ class arcade:
         '''
 
     def returnToArcade():
-        arcade()
+        arcade().UI()
 
 
 
