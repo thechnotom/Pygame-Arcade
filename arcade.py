@@ -27,12 +27,22 @@ class arcade:
     #Framework
     def GetEvent(): 
         return pygame.events.get()
+    
     def GetKey():
         return pygame.key.get_pressed()
+    
     def GetMousePos():
         return pygame.mouse.get_pos()
+    
     def GetMouseButton():
         return pygame.mouse.get_pressed()
+    
+    def GetImage(file):
+        return pygame.image.load(file)
+    
+    def GetSound(file):
+        return pygame.mixer.Sound(file)
+    
     def isColliding(obj1,obj2):
         return obj1.colliderect(obj2)
 
@@ -41,8 +51,7 @@ class arcade:
         for arg in args:
             print(arg)
             self.screen.blit(arg[0],(arg[1],arg[2]))
-        update_areas = [pygame.Surface.get_rect(x[0]) for x in args]
-        print(update_areas)
+            update_areas.append(pygame.Surface.get_rect(arg[0]))
         pygame.display.update(update_areas) #only update areas that requires it
 
         '''
@@ -66,8 +75,11 @@ if __name__ == '__main__':
     #All games are executable as a standalone game.
     #All games are contained in a single .py file + resources (sprites, fonts, etc.)
     pygame.init()
-    pygame.display.set_caption("Arcade")
+    pygame.mixer.init(22050,-16,2,1024)
+    pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
+
+    
     news = pygame.Surface((600,600))
     news.fill((255,255,255),(10,10,10,10))
     while True:
