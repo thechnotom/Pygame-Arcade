@@ -22,10 +22,8 @@ class arcade:
                 sys.exit()
         pygame.event.pump()
 
-    def UI(self, x):
-        news = pygame.Surface((10,10))
-        news.fill((255,255,255),(0,0,10,10))
-        arcade.Draw((news, x, 0))
+    def UI(self):
+        pass
 
     #Framework
     def GetEvent():
@@ -83,8 +81,7 @@ if __name__ == '__main__':
         now = pygame.time.get_ticks()
         if now - last >= cooldown:
             last = now
-            arcade.UI(i)
-            i += 1
+            arcade.UI()
             arcade.InputEvents()
 
 
