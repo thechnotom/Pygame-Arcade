@@ -50,6 +50,9 @@ class arcade:
 
     def Draw(self, *args): #arg is (object, x, y)
         update_areas = []
+        news = pygame.Surface((600,600))
+        news.fill((0,0,0),(0,0,600,600))
+        self.screen.blit(news, (0, 0))
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
             area = pygame.Surface.get_rect(arg[0])
@@ -85,7 +88,7 @@ if __name__ == '__main__':
     pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
     last = pygame.time.get_ticks()
-    cooldown = 300    
+    cooldown = 30   
     i = 0
     while True:
         now = pygame.time.get_ticks()
