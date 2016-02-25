@@ -41,11 +41,11 @@ class arcade:
         return pygame.mouse.get_pressed()
 
     def GetImage(file):
-        return pygame.image.load(os.getcwd() + '\\resources\\'.join(file))
+        return pygame.image.load(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
 
     def GetSound(file):
-        return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file))
-
+        return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
+    
     def isColliding(obj1,obj2):
         return obj1.colliderect(obj2)
 
