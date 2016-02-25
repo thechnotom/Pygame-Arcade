@@ -7,7 +7,8 @@ import pygame, sys, os
 from pygame.locals import *
 
 class arcade:
-
+    global previous_areas ; previous_areas = []
+    
     def __init__(self):
         flags = HWSURFACE | DOUBLEBUF #| NOFRAME
         screen_x, screen_y = 600, 600
@@ -49,6 +50,7 @@ class arcade:
         return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
 
     def Draw(self, *args): #arg is (object, x, y)
+        global previous_areas
         update_areas = []
         news = pygame.Surface((600,600))
         news.fill((0,0,0),(0,0,600,600))
@@ -59,6 +61,8 @@ class arcade:
             area[0], area[1] = arg[1], arg[2]
             update_areas.append(area)
         pygame.display.update(update_areas) #only update areas that requires it
+        pygame.display.update(previous_areas)
+        previous_areas = update_areas
 
         '''
         events = pygame.events.get()
