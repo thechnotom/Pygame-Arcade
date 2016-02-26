@@ -19,47 +19,48 @@ class arcade:
         pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\window_icon.png').convert_alpha())
 
     def UI(self):
+        arcade.setCaption(__file__)
         pass
-
+    
     #Framework
-    def GetEvents(self):
+    def getEvents(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
         pygame.event.pump()
 
-    def GetKey(self):
+    def getKey(self):
         return pygame.key.get_pressed()
 
-    def GetMousePos(self):
+    def getMousePos(self):
         return pygame.mouse.get_pos()
 
-    def GetMouseButton(self):
+    def getMouseButton(self):
         return pygame.mouse.get_pressed()
 
-    def GetImage(self, file):
+    def getImage(self, file):
         return pygame.image.load(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
 
-    def GetSound(self, file):
+    def getSound(self, file):
         return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
     
     def isColliding(obj1,obj2):
         return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
 
-    def DrawBackground(self, background):
+    def drawBackground(self, background):
         self.screen.blit(background, (0, 0))
 
-    def InitBackground(self, background):
+    def initBackground(self, background):
         self.screen.blit(background, (0, 0))
         pygame.display.update()
 
-    def Draw(self, *args): #arg is (object, x, y)
+    def draw(self, *args): #arg is (object, x, y)
         global previous_areas
         update_areas = []
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
-            area = pygame.Surface.get_rect(arg[0])
+            area = pygame.Surface.get_bounding_rect(arg[0])
             area[0], area[1] = arg[1], arg[2]
             update_areas.append(area)
             
@@ -67,8 +68,15 @@ class arcade:
         pygame.display.update(previous_areas)
         previous_areas = update_areas[:]
 
+    def makeSurface(self):
+        pass
+    
+    def setCaption(self, file):
+        pygame.display.set_caption(os.path.basename(file).split('.')[0])
+    
     def returnToArcade(self):
         arcade().UI()
+
 
 if __name__ == '__main__':
     #If arcade.py is executed, open game selector UI
@@ -76,7 +84,6 @@ if __name__ == '__main__':
     #All games are contained in a single .py file + resources (sprites, fonts, etc.)
     pygame.init()
     pygame.mixer.init(22050,-16,2,1024)
-    pygame.display.set_caption(os.path.basename(__file__).split('.')[0])
     arcade = arcade()
     last = pygame.time.get_ticks()
     cooldown = 30   
@@ -86,6 +93,6 @@ if __name__ == '__main__':
         if now - last >= cooldown:
             last = now
             arcade.UI()
-            arcade.InputEvents()
+            arcade.getEvents()
 
 
