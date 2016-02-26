@@ -6,7 +6,7 @@ from colours import *
 def Game(arcade):
     
     ball_x, ball_y = 290, 290
-    ball = pygame.Surface((20,20))
+    ball = pygame.Surface((20,20), pygame.SRCALPHA, 32).convert_alpha()
     pygame.draw.circle(ball, gold, (10,10), 10)
     speed_x, speed_y = 3, 3
 

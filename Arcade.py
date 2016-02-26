@@ -3,7 +3,8 @@
 # 2016
 # A collection of games built using pygame by the ICS4U-02 class, all running in a virtual arcade.
 
-# TODO: fix background, allow user to adjust window size on init, collision detect
+# TODO: fix background, allow user to adjust window size on init, collision detect,
+#       arcade procedure for surface generation (w/ transparency)
 
 import pygame, sys, os
 from pygame.locals import *
