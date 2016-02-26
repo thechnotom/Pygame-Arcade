@@ -2,11 +2,11 @@ import pygame, os
 from pygame.locals import *
 from Arcade import arcade
 
-def Game(arcade):
 
+def Game(arcade):
     ball_x, ball_y = 290, 290
     ball = pygame.Surface((20,20))
-    pygame.draw.circle(ball, (255,255,255), (10,10), 10)
+    pygame.draw.circle(ball, arcade.colour('blue'), (10,10), 10)
     speed_x, speed_y = 3, 3
 
     player_x, player_y = 300, 550

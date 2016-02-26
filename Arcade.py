@@ -63,6 +63,18 @@ class arcade:
     def returnToArcade(self):
         arcade().UI()
 
+    def colour(self, x):
+        return {
+        'black': (0,0,0),
+        'white': (255,255,255),
+        'red': (255, 0, 0),
+        'cyan': (0, 255, 255),
+        'blue': (0, 0, 255),
+        'green': (0, 255, 0),
+        'magenta': (255, 0, 255),
+        'yellow': (255, 255, 0)
+        }.get(x, (255,255,255))
+
 
 if __name__ == '__main__':
     #If arcade.py is executed, open game selector UI
