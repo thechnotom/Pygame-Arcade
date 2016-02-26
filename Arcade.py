@@ -3,6 +3,8 @@
 # 2016
 # A collection of games built using pygame by the ICS4U-02 class, all running in a virtual arcade.
 
+# TODO: fix background, allow user to adjust window size on init, collision detect
+
 import pygame, sys, os
 from pygame.locals import *
 
@@ -46,6 +48,10 @@ class arcade:
 
     def DrawBackground(self, background):
         self.screen.blit(background, (0, 0))
+
+    def InitBackground(self, background):
+        self.screen.blit(background, (0, 0))
+        pygame.display.update()
 
     def Draw(self, *args): #arg is (object, x, y)
         global previous_areas

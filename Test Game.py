@@ -4,6 +4,8 @@ from Arcade import arcade
 
 
 def Game(arcade):
+    
+    
     ball_x, ball_y = 290, 290
     ball = pygame.Surface((20,20))
     pygame.draw.circle(ball, arcade.colour('blue'), (10,10), 10)
@@ -14,10 +16,11 @@ def Game(arcade):
     player.fill((255,255,255),(0,0,100,25))
 
     background = pygame.Surface((600,600))
-    background.fill((0,0,0),(0,0,600,600))
+    background.fill(arcade.colour('red'),(0,0,600,600))
+    arcade.InitBackground(background)
 
     last = pygame.time.get_ticks()
-    cooldown = 30
+    cooldown = 5
     alive = True
     
     while alive:
