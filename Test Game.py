@@ -21,7 +21,7 @@ def Game(arcade):
     alive = True
     
     while alive:
-        arcade.InputEvents()
+        arcade.GetEvents()
         now = pygame.time.get_ticks()
         if now - last >= cooldown:
             last = now

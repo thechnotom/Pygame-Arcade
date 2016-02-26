@@ -15,33 +15,30 @@ class arcade:
         self.screen = pygame.display.set_mode((screen_x,screen_y),flags)
         pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\window_icon.png').convert_alpha())
 
-    def InputEvents(self):
+    def UI(self):
+        pass
+
+    #Framework
+    def GetEvents(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
         pygame.event.pump()
 
-    def UI(self):
-        pass
-
-    #Framework
-    def GetEvent():
-        return pygame.events.get()
-
     def GetKey(self):
         return pygame.key.get_pressed()
 
-    def GetMousePos():
+    def GetMousePos(self):
         return pygame.mouse.get_pos()
 
-    def GetMouseButton():
+    def GetMouseButton(self):
         return pygame.mouse.get_pressed()
 
-    def GetImage(file):
+    def GetImage(self, file):
         return pygame.image.load(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
 
-    def GetSound(file):
+    def GetSound(self, file):
         return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
     
     def isColliding(obj1,obj2):
@@ -63,7 +60,7 @@ class arcade:
         pygame.display.update(previous_areas)
         previous_areas = update_areas[:]
 
-    def returnToArcade():
+    def returnToArcade(self):
         arcade().UI()
 
 
