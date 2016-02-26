@@ -8,6 +8,7 @@
 import pygame, os
 from pygame.locals import *
 from Arcade import arcade
+from colours import *
 
 # Here you can place your game's procedures and/or classes. 
 
@@ -98,6 +99,7 @@ if __name__ == '__main__':
 import pygame, os
 from pygame.locals import *
 from Arcade import arcade
+from colours import *
 
 if __name__ == '__main__':
     pygame.init()
