@@ -1,4 +1,4 @@
-import pygame, os
+import pygame, os, sys
 from pygame.locals import *
 from Arcade import arcade
 from colours import *
@@ -8,12 +8,12 @@ def Game(arcade):
     arcade.setCaption(__file__)
     
     ball_x, ball_y = 290, 290
-    ball = pygame.Surface((600,600), pygame.SRCALPHA, 32).convert_alpha()
+    ball = arcade.makeSurface(20,20,1)
     pygame.draw.circle(ball, gold, (10,10), 10)
     speed_x, speed_y = 3, 3
 
     player_x, player_y = 300, 550
-    player = pygame.Surface((100, 25))
+    player = arcade.makeSurface(100, 25)
     player.fill(navy,(0,0,100,25))
 
     background = pygame.Surface((600,600))
@@ -23,6 +23,9 @@ def Game(arcade):
     last = pygame.time.get_ticks()
     cooldown = 10
     alive = True
+
+    dy = 3
+    dx = 2
     
     while alive:
         arcade.getEvents()
@@ -35,7 +38,22 @@ def Game(arcade):
                 player_x -= 5
             if pressed[K_d] or pressed[K_RIGHT]:
                 player_x += 5
+            if pressed[K_ESCAPE]:
+                pygame.quit()
+                sys.exit()
 
+            ball_y -= dy
+            ball_x -= dx
+    
+            if ball_y <= 0:
+                dy *= -1
+            if ball_y >= 600:
+                #you lose
+                dy *= -1
+            if ball_x <= 0:
+                dx *= -1
+            if ball_x >= 600:
+                dx *= -1  
             
             arcade.drawBackground(background)
             arcade.draw((player, player_x, player_y),

@@ -3,8 +3,7 @@
 # 2016
 # A collection of games built using pygame by the ICS4U-02 class, all running in a virtual arcade.
 
-# TODO: fix background, allow user to adjust window size on init, collision detect,
-#       arcade procedure for surface generation (w/ transparency)
+# TODO: fix background, allow user to adjust window size on init, collision detect
 
 import pygame, sys, os
 from pygame.locals import *
@@ -68,8 +67,10 @@ class arcade:
         pygame.display.update(previous_areas)
         previous_areas = update_areas[:]
 
-    def makeSurface(self):
-        pass
+    def makeSurface(self, width, height, alpha = 0):
+        if alpha:
+            return pygame.Surface((width,height), pygame.SRCALPHA, 32).convert_alpha()
+        return pygame.Surface((width,height))
     
     def setCaption(self, file):
         pygame.display.set_caption(os.path.basename(file).split('.')[0])
