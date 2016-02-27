@@ -63,8 +63,8 @@ class arcade:
             area[0], area[1] = arg[1], arg[2]
             update_areas.append(area)
             
-        pygame.display.update(update_areas) #only update areas that requires it
-        pygame.display.update(previous_areas)
+        act_rects = update_areas + previous_areas
+        pygame.display.update(act_rects)
         previous_areas = update_areas[:]
 
     def makeSurface(self, width, height, alpha = 0):
@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     while True:
         now = pygame.time.get_ticks()
-        if now - last >= cooldown:
+        while now - last >= cooldown:
             last = now
             arcade.UI()
             arcade.getEvents()

@@ -10,9 +10,8 @@ def Game(arcade):
     ball_x, ball_y = 290, 290
     ball = arcade.makeSurface(20,20,1)
     pygame.draw.circle(ball, gold, (10,10), 10)
-    speed_x, speed_y = 3, 3
 
-    player_x, player_y = 300, 550
+    player_x, player_y = 250, 550
     player = arcade.makeSurface(100, 25)
     player.fill(navy,(0,0,100,25))
 
@@ -21,7 +20,7 @@ def Game(arcade):
     arcade.initBackground(background)
 
     last = pygame.time.get_ticks()
-    cooldown = 10
+    cooldown = 8
     alive = True
 
     dy = 3
@@ -30,7 +29,7 @@ def Game(arcade):
     while alive:
         arcade.getEvents()
         now = pygame.time.get_ticks()
-        if now - last >= cooldown:
+        while now - last >= cooldown:
             last = now
 
             pressed = arcade.getKey()
@@ -55,9 +54,9 @@ def Game(arcade):
             if ball_x >= 600:
                 dx *= -1  
             
-            arcade.drawBackground(background)
-            arcade.draw((player, player_x, player_y),
-                        (ball, ball_x, ball_y))
+        arcade.drawBackground(background)
+        arcade.draw((player, player_x, player_y),
+                    (ball, ball_x, ball_y))
 
 if __name__ == '__main__':
     pygame.init()
