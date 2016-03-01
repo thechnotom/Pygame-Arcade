@@ -3,8 +3,6 @@
 # 2016
 # A collection of games built using pygame by the ICS4U-02 class, all running in a virtual arcade.
 
-# TODO: fix background, allow user to adjust window size on init, collision detect
-
 import pygame, sys, os
 from pygame.locals import *
 
@@ -29,6 +27,12 @@ class arcade:
                 sys.exit()
         pygame.event.pump()
 
+    def setWindow(self, width, height):
+        flags = HWSURFACE | DOUBLEBUF
+        screen_x, screen_y = width, height
+        self.screen = pygame.display.set_mode((screen_x,screen_y),flags)
+        pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\window_icon.png').convert_alpha())
+
     def getKey(self):
         return pygame.key.get_pressed()
 
@@ -38,11 +42,11 @@ class arcade:
     def getMouseButton(self):
         return pygame.mouse.get_pressed()
 
-    def getImage(self, file):
-        return pygame.image.load(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
+    def getImage(self, name, file):
+        return pygame.image.load(os.getcwd() + '\\resources\\' + os.path.basename(name).split('.')[0] + '\\' + file) #Fix later; should fetch from __name__ folder
 
     def getSound(self, file):
-        return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
+        return pygame.mixer.Sound(os.getcwd() + '\\resources\\' + os.path.basename(name).split('.')[0] + '\\' + file) #Fix later; should fetch from __name__ folder
     
     def isColliding(obj1,obj2):
         return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
@@ -55,17 +59,18 @@ class arcade:
         pygame.display.update()
 
     def draw(self, *args): #arg is (object, x, y)
-        global previous_areas
-        update_areas = []
+        #global previous_areas
+        #update_areas = []
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
-            area = pygame.Surface.get_bounding_rect(arg[0])
-            area[0], area[1] = arg[1], arg[2]
-            update_areas.append(area)
+            #area = pygame.Surface.get_bounding_rect(arg[0])
+            #area[0], area[1] = arg[1], arg[2]
+            #update_areas.append(area)
             
-        act_rects = update_areas + previous_areas
-        pygame.display.update(act_rects)
-        previous_areas = update_areas[:]
+        #act_rects = update_areas + previous_areas
+        #pygame.display.update(act_rects)
+        #previous_areas = update_areas[:]
+        pygame.display.update()
 
     def makeSurface(self, width, height, alpha = 0):
         if alpha:
@@ -76,7 +81,9 @@ class arcade:
         pygame.display.set_caption(os.path.basename(file).split('.')[0])
     
     def returnToArcade(self):
+        setWindow(600,600)
         arcade().UI()
+        
 
 
 if __name__ == '__main__':
