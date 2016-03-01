@@ -25,6 +25,7 @@ def Game(arcade):
 
     dy = 3
     dx = 2
+
     
     while alive:
         arcade.getEvents()
