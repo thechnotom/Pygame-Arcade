@@ -44,8 +44,10 @@ class arcade:
     def getSound(self, file):
         return pygame.mixer.Sound(os.getcwd() + '\\resources\\'.join(file)) #Fix later; should fetch from __name__ folder
     
-    def isColliding(obj1,obj2):
-        return pygame.Surface.get_rect(obj1).colliderect(pygame.Surface.get_rect(obj2))
+    def isColliding(self, obj1, obj2):
+        rect1 = pygame.Rect(obj1[1], obj1[2], pygame.Surface.get_rect(obj1[0])[2], pygame.Surface.get_rect(obj1[0])[3])
+        rect2 = pygame.Rect(obj2[1], obj2[2], pygame.Surface.get_rect(obj2[0])[2], pygame.Surface.get_rect(obj2[0])[3])
+        return rect1.colliderect(rect2)
 
     def drawBackground(self, background):
         self.screen.blit(background, (0, 0))
@@ -64,7 +66,7 @@ class arcade:
             update_areas.append(area)
             
         act_rects = update_areas + previous_areas
-        pygame.display.update(act_rects)
+        pygame.display.update()
         previous_areas = update_areas[:]
 
     def makeSurface(self, width, height, alpha = 0):

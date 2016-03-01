@@ -34,26 +34,37 @@ def Game(arcade):
 
             pressed = arcade.getKey()
             if pressed[K_a] or pressed[K_LEFT]:
-                player_x -= 5
+                if player_x > 0:
+                    player_x -= 5
             if pressed[K_d] or pressed[K_RIGHT]:
-                player_x += 5
+                if player_x < 500:
+                    player_x += 5
             if pressed[K_ESCAPE]:
                 pygame.quit()
                 sys.exit()
-
-            ball_y -= dy
-            ball_x -= dx
+                
+            if arcade.isColliding((player, player_x, player_y), (ball, ball_x, ball_y)):
+                dy *= -1
+                dx *= -1
     
             if ball_y <= 0:
                 dy *= -1
-            if ball_y >= 600:
-                #you lose
-                dy *= -1
+
             if ball_x <= 0:
                 dx *= -1
-            if ball_x >= 600:
+            if ball_x >= 580:
                 dx *= -1  
-            
+
+            if arcade.isColliding((player, player_x, player_y), (ball, ball_x, ball_y)):
+                dy = 3
+                dx *= -1
+
+            ball_y -= dy
+            ball_x -= dx
+
+            if ball_y >= 550:
+                pygame.quit()
+                sys.exit()
         arcade.drawBackground(background)
         arcade.draw((player, player_x, player_y),
                     (ball, ball_x, ball_y))
