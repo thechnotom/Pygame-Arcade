@@ -30,25 +30,25 @@ def SnowWhirled(arcade):
                 sys.exit()
             if pressed[K_SPACE]:
                 start = 1
-            if position == 1 and pressed[K_DOWN] and not pressed[K_LEFT] and not pressed[K_UP] and not pressed[K_RIGHT]:
+            if position == 1 and pressed[K_DOWN] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_RIGHT]):
                 position = 2
                 if  player == 1
                     score1 += 90
                 elif player == 2
                     score2 += 90
-            if position == 2 and pressed[K_LEFT] and not pressed[K_DOWN] and not pressed[K_UP] and not pressed[K_RIGHT]:
+            if position == 2 and pressed[K_LEFT] and not any(pressed[K_DOWN],pressed[K_UP],pressed[K_RIGHT]):
                 position = 3
                 if  player == 1
                     score1 += 90
                 elif player == 2
                     score2 += 90
-            if position == 3 and pressed[K_UP] and not pressed[K_LEFT] and not pressed[K_DOWN] and not pressed[K_RIGHT]:
+            if position == 3 and pressed[K_UP] and not any(pressed[K_LEFT],pressed[K_DOWN],pressed[K_RIGHT]):
                 position = 4
                 if  player == 1
                     score1 += 90
                 elif player == 2
                     score2 += 90
-            if position == 4 and pressed[K_RIGHT] and not pressed[K_LEFT] and not pressed[K_UP] and not pressed[K_DOWN]:
+            if position == 4 and pressed[K_RIGHT] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_DOWN]):
                 position = 1
                 if  player == 1
                     score1 += 90
