@@ -22,40 +22,42 @@ def SnowWhirled(arcade):
         while TimeRem > 0:
             
             arcade.getEvents()
-            if Start = 1:
+            if Start == 1:
                 TimeRem -= 1
             pressed = arcade.getKey()
             if pressed[K_ESCAPE]:
                 pygame.quit()
                 sys.exit()
             if pressed[K_SPACE]:
-                start = 1
-            if position == 1 and pressed[K_DOWN] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_RIGHT]):
+                Ttart = 1
+            if position == 1 and pressed[K_DOWN] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_RIGHT]) and Start = 1:
                 position = 2
-                if  player == 1
+                if  player == 1:
                     score1 += 90
-                elif player == 2
+                elif player == 2:
                     score2 += 90
-            if position == 2 and pressed[K_LEFT] and not any(pressed[K_DOWN],pressed[K_UP],pressed[K_RIGHT]):
+            if position == 2 and pressed[K_LEFT] and not any(pressed[K_DOWN],pressed[K_UP],pressed[K_RIGHT]) and Start = 1:
                 position = 3
-                if  player == 1
+                if  player == 1:
                     score1 += 90
-                elif player == 2
+                elif player == 2:
                     score2 += 90
-            if position == 3 and pressed[K_UP] and not any(pressed[K_LEFT],pressed[K_DOWN],pressed[K_RIGHT]):
+            if position == 3 and pressed[K_UP] and not any(pressed[K_LEFT],pressed[K_DOWN],pressed[K_RIGHT]) and Start = 1:
                 position = 4
-                if  player == 1
+                if  player == 1:
                     score1 += 90
-                elif player == 2
+                elif player == 2:
                     score2 += 90
-            if position == 4 and pressed[K_RIGHT] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_DOWN]):
+            if position == 4 and pressed[K_RIGHT] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_DOWN]) and Start = 1:
                 position = 1
-                if  player == 1
+                if  player == 1:
                     score1 += 90
-                elif player == 2
+                elif player == 2:
                     score2 += 90
 
-            player = 2
+        if player == 2
+            break
+        player = 2
         
 if __name__ == '__main__':
     pygame.init()
