@@ -49,8 +49,8 @@ class arcade:
         return pygame.mixer.Sound(os.getcwd() + '\\resources\\' + os.path.basename(name).split('.')[0] + '\\' + file) #Fix later; should fetch from __name__ folder
     
     def isColliding(self, obj1, obj2): # checks if two surfaces are collliding
-        rect1 = pygame.Rect(obj1[1], obj1[2], pygame.Surface.get_bounding_rect(obj1[0])[2], pygame.Surface.get_rect(obj1[0])[3])
-        rect2 = pygame.Rect(obj2[1], obj2[2], pygame.Surface.get_bounding_rect(obj2[0])[2], pygame.Surface.get_rect(obj2[0])[3])
+        rect1 = pygame.Rect(obj1[1], obj1[2], pygame.Surface.get_bounding_rect(obj1[0])[2], pygame.Surface.get_bounding_rect(obj1[0])[3])
+        rect2 = pygame.Rect(obj2[1], obj2[2], pygame.Surface.get_bounding_rect(obj2[0])[2], pygame.Surface.get_bounding_rect(obj2[0])[3])
         return rect1.colliderect(rect2)
 
     def drawBackground(self, background): # draws background but doesnt update
