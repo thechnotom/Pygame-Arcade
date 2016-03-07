@@ -34,7 +34,7 @@ def SnowWhirled(arcade):
     while True:
         #Declaration of Variables        
         position = 1
-        start = 0
+        Start = 0
         TimeRem = 5000
         
         while TimeRem > 0:
@@ -53,7 +53,7 @@ def SnowWhirled(arcade):
                 sys.exit()
                 
             if pressed[K_SPACE]:
-                start = 1
+                Start = 1
                 
             if position == 1 and pressed[K_DOWN] and not any(pressed[K_LEFT],pressed[K_UP],pressed[K_RIGHT]):
                 position = 2
