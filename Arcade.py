@@ -42,11 +42,11 @@ class arcade:
     def getMouseButton(self): # returns what mouse buttons are pressed
         return pygame.mouse.get_pressed()
 
-    def getImage(self, name, file): # returns loaded pygame image from folder
-        return pygame.image.load(os.getcwd() + '\\resources\\' + os.path.basename(name).split('.')[0] + '\\' + file) #Fix later; should fetch from __name__ folder
+    def getImage(self, path, file): # returns loaded pygame image from folder
+        return pygame.image.load(os.getcwd() + '\\resources\\' + os.path.basename(path).split('.')[0] + '\\' + file)
 
-    def getSound(self, file): # returns loaded sound file from folder
-        return pygame.mixer.Sound(os.getcwd() + '\\resources\\' + os.path.basename(name).split('.')[0] + '\\' + file) #Fix later; should fetch from __name__ folder
+    def getSound(self, path, file): # returns loaded sound file from folder
+        return pygame.mixer.Sound(os.getcwd() + '\\resources\\' + os.path.basename(path).split('.')[0] + '\\' + file)
     
     def isColliding(self, obj1, obj2): # checks if two surfaces are collliding
         rect1 = pygame.Rect(obj1[1], obj1[2], pygame.Surface.get_bounding_rect(obj1[0])[2], pygame.Surface.get_bounding_rect(obj1[0])[3])
@@ -72,7 +72,6 @@ class arcade:
         act_rects = update_areas[:] + previous_areas[:]
         pygame.display.update(act_rects)
         previous_areas = update_areas[:]
-        #pygame.display.update()
 
     def makeSurface(self, width, height, alpha = 0): # creates a surface with transparency 
         if alpha:
