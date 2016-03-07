@@ -14,16 +14,30 @@ def SnowWhirled(arcade):
     arcade.setWindow(1250,900)
 
     player = 1
+
+    snowpic = arcade.getImage('snowpic.jpg')
+    position1 = arcade.getImage('position1.jpg')
+    position2 = arcade.getImage('position2.jpg')
+    position3 = arcade.getImage('position3.jpg')
+    position4 = arcade.getImage('position4.jpg')
+
+    Font1 = pygame.font.SysFont("monospace", 36)
+
+    label1 = Font1.render("Player 1 Score           Player 2 Score", 1, (0,0,0))
+    label2 = Font2.render(str(score1), 1, (0,0,0))
+    label3 = Font2.render(str(score2), 1, (0,0,0))
     
     while True:
         position = 1
         start = 0
         TimeRem = 5000
+        
         while TimeRem > 0:
-            
+            arcade.drawBackground(snowpic)
             arcade.getEvents()
             if Start == 1:
                 TimeRem -= 1
+                
             pressed = arcade.getKey()
             if pressed[K_ESCAPE]:
                 pygame.quit()
@@ -54,6 +68,17 @@ def SnowWhirled(arcade):
                     score1 += 90
                 elif player == 2:
                     score2 += 90
+
+            if Start == 0:
+                arcade.draw ((position1, 600, 200))
+            if position == 1 and Start == 1:
+                arcade.draw ((position1, 600, 500))
+            if position == 2 and Start == 1:
+                arcade.draw ((position2, 600, 500))
+            if position == 3 and Start == 1:
+                arcade.draw ((position3, 600, 500))
+            if position == 4 and Start == 1:
+                arcade.draw ((position4, 600, 500))
 
         if player == 2:
             break
