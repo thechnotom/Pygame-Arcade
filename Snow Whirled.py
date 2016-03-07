@@ -9,11 +9,16 @@ from pygame.locals import *
 from Arcade import arcade
 from colours import *
 
+
 def SnowWhirled(arcade):
 
     arcade.setWindow(1250,900)
 
     player = 1
+    
+    snowbackground = arcade.getImage(__file__, "snowbackground.jpg")
+    
+    arcade.initBackground(snowbackground)
     
     while True:
         #Declaration of Variables        
@@ -74,7 +79,9 @@ def SnowWhirled(arcade):
                     score1 += 90
                 elif player == 2:
                     score2 += 90
-
+            #Drawing the background
+            arcade.drawBackground(snowbackground)
+            
             player = 2
         
 if __name__ == '__main__':
