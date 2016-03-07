@@ -42,8 +42,10 @@ class arcade:
     def getMouseButton(self): # returns what mouse buttons are pressed
         return pygame.mouse.get_pressed()
 
-    def getImage(self, path, file): # returns loaded pygame image from folder
-        return pygame.image.load(os.getcwd() + '\\resources\\' + os.path.basename(path).split('.')[0] + '\\' + file)
+    def getImage(self, path, file, alpha = 0): # returns loaded pygame image from folder
+        if alpha:
+            return pygame.image.load(os.getcwd() + '\\resources\\' + os.path.basename(path).split('.')[0] + '\\' + file).convert_alpha()
+        return pygame.image.load(os.getcwd() + '\\resources\\' + os.path.basename(path).split('.')[0] + '\\' + file).convert()
 
     def getSound(self, path, file): # returns loaded sound file from folder
         return pygame.mixer.Sound(os.getcwd() + '\\resources\\' + os.path.basename(path).split('.')[0] + '\\' + file)
