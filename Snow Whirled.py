@@ -33,10 +33,10 @@ def SnowWhirled(arcade):
 
     Font1 = pygame.font.SysFont("monospace", 36)
 
-    label1 = Font1.render("Player 1 Score           Player 2 Score", 1, (0,0,0))
+    label1 = Font1.render("Player 1 Score:           Player 2 Score:", 1, (0,0,0))
     label2 = Font1.render(str(score1), 1, (0,0,0))
     label3 = Font1.render(str(score2), 1, (0,0,0))
-
+   
     arcade.initBackground(snowpic)
     
     while True:   
@@ -45,7 +45,6 @@ def SnowWhirled(arcade):
         TimeRem = 200
         
         while TimeRem > 0:
-            time.sleep(0.02)
             arcade.drawBackground(snowpic)
             arcade.getEvents()
             
@@ -53,8 +52,6 @@ def SnowWhirled(arcade):
                 label4 = Font1.render(str(TimeRem/20), 1, (0,0,0))
                 label2 = Font1.render(str(score1), 1, (0,0,0))
                 label3 = Font1.render(str(score2), 1, (0,0,0))
-
-            arcade.draw ((label4, 500, 200))
 
             #Timer
             if Start == 1:
@@ -70,7 +67,7 @@ def SnowWhirled(arcade):
             if pressed[K_SPACE]:
                 Start = 1
                 
-            if position == 1 and pressed[K_DOWN] and not any([pressed[K_LEFT],pressed[K_UP],pressed[K_RIGHT]]):
+            if position == 1 and pressed[K_DOWN] and not any([pressed[K_LEFT],pressed[K_UP],pressed[K_RIGHT]]) and Start == 1:
                 position = 2
 
                 #Scoring for players 
@@ -79,16 +76,15 @@ def SnowWhirled(arcade):
                 elif player == 2:
                     score2 += 90
                     
-            if position == 2 and pressed[K_LEFT] and not any([pressed[K_DOWN],pressed[K_UP],pressed[K_RIGHT]]):
+            if position == 2 and pressed[K_LEFT] and not any([pressed[K_DOWN],pressed[K_UP],pressed[K_RIGHT]]) and Start == 1:
                 position = 3
 
                 #Scoring for players 
                 if  player == 1:
                     score1 += 90
                 elif player == 2:
-                    score2 += 90
-                    
-            if position == 3 and pressed[K_UP] and not any([pressed[K_LEFT],pressed[K_DOWN],pressed[K_RIGHT]]):
+                    score2 += 90                    
+            if position == 3 and pressed[K_UP] and not any([pressed[K_LEFT],pressed[K_DOWN],pressed[K_RIGHT]]) and Start == 1:
                 position = 4
 
                 #Scoring for players 
@@ -97,7 +93,7 @@ def SnowWhirled(arcade):
                 elif player == 2:
                     score2 += 90
                     
-            if position == 4 and pressed[K_RIGHT] and not any([pressed[K_LEFT],pressed[K_UP],pressed[K_DOWN]]):
+            if position == 4 and pressed[K_RIGHT] and not any([pressed[K_LEFT],pressed[K_UP],pressed[K_DOWN]]) and Start == 1:
                 position = 1
 
                 #Scoring for players 
@@ -107,26 +103,26 @@ def SnowWhirled(arcade):
                     score2 += 90
 
             if Start == 0 and player == 1:
-                arcade.draw ((p1p1, 300, 650),(Down, 700, 300))
-            if position == 1 and Start == 1 and player == 1:
-                arcade.draw ((p1p1, 300, 350),(Down, 700, 300))
-            if position == 2 and Start == 1 and player == 1:
-                arcade.draw ((p1p2, 300, 350),(Left, 700, 300))
-            if position == 3 and Start == 1 and player == 1:
-                arcade.draw ((p1p3, 300, 350),(Up, 700, 300))
-            if position == 4 and Start == 1 and player == 1:
-                arcade.draw ((p1p4, 300, 350),(Right, 700, 300))
+                arcade.draw ((p1p1, 300, 650),(Down, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 1 and Start == 1 and player == 1:
+                arcade.draw ((p1p1, 300, 350),(Down, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 2 and Start == 1 and player == 1:
+                arcade.draw ((p1p2, 300, 350),(Left, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 3 and Start == 1 and player == 1:
+                arcade.draw ((p1p3, 300, 350),(Up, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 4 and Start == 1 and player == 1:
+                arcade.draw ((p1p4, 300, 350),(Right, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
 
             if Start == 0 and player == 2:
-                arcade.draw ((p2p1, 300, 650),(Down, 700, 300))
-            if position == 1 and Start == 1 and player == 2:
-                arcade.draw ((p2p1, 300, 350),(Down, 700, 300))
-            if position == 2 and Start == 1 and player == 2:
-                arcade.draw ((p2p2, 300, 350),(Left, 700, 300))
-            if position == 3 and Start == 1 and player == 2:
-                arcade.draw ((p2p3, 300, 350),(Up, 700, 300))
-            if position == 4 and Start == 1 and player == 2:
-                arcade.draw ((p2p4, 300, 350),(Right, 700, 300))
+                arcade.draw ((p2p1, 300, 650),(Down, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 1 and Start == 1 and player == 2:
+                arcade.draw ((p2p1, 300, 350),(Down, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 2 and Start == 1 and player == 2:
+                arcade.draw ((p2p2, 300, 350),(Left, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 3 and Start == 1 and player == 2:
+                arcade.draw ((p2p3, 300, 350),(Up, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
+            elif position == 4 and Start == 1 and player == 2:
+                arcade.draw ((p2p4, 300, 350),(Right, 700, 300),(label4, 500, 200),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800))
 
         if player == 2:
             break
