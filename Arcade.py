@@ -19,7 +19,7 @@ class arcade:
     def UI(arcade):
         arcade.setCaption(__file__)
         arcade.setWindow(600,600)
-        bg = arcade.getImage('\\','window_icon.png')
+        bg = arcade.getImage('\\','window_icon.png', 1)
         arcade.initBackground(bg)
 
         while True:
@@ -97,6 +97,7 @@ class arcade:
         pygame.display.set_caption(os.path.basename(file).split('.')[0])
 
     def returnToArcade(self): # when you end your game call this in final product
+        pygame.mouse.set_visible(True)
         self.setWindow(600,600)
         self.UI()
 
