@@ -6,7 +6,6 @@
 import pygame, sys, os
 from pygame.locals import *
 from importlib import import_module
-testgame = import_module('Test Game')
 
 class arcade:
     global previous_areas; previous_areas = []
@@ -30,7 +29,8 @@ class arcade:
             mouse = arcade.getMousePos()
             mouseClicked = arcade.getMouseButton()
             if mouse[0] > 100 and mouse[1] > 100 and mouse[0] < 500 and mouse[1] < 500 and mouseClicked[0] == True:
-                testgame.Game(arcade)
+                #import_module('Test Game').Game(arcade)
+                import_module('Air Hockey').air_hockey(arcade)
 
     #Framework
     def getEvents(self): # You NEED this to be called in your main loop
@@ -87,10 +87,7 @@ class arcade:
         act_rects = update_areas[:] + previous_areas[:]
         pygame.display.update(act_rects)
         previous_areas = update_areas[:]
-
-    def fdraw(self):
-        pygame.display.flip()
-
+        
     def makeSurface(self, width, height, alpha = 0): # creates a surface with transparency
         if alpha:
             return pygame.Surface((width,height), pygame.SRCALPHA, 32).convert_alpha()
