@@ -41,8 +41,7 @@ def Game(arcade):
                 if player_x < 500:
                     player_x += 5
             if pressed[K_ESCAPE]:
-                pygame.quit()
-                sys.exit()
+                arcade.returnToArcade()
                 
             if arcade.isColliding((player, player_x, player_y), (ball, ball_x, ball_y)):
                 dy *= -1
@@ -64,8 +63,7 @@ def Game(arcade):
             ball_x -= dx
 
             if ball_y >= 550:
-                pygame.quit()
-                sys.exit()
+                arcade.returnToArcade()
         arcade.drawBackground(background)
         arcade.draw((player, player_x, player_y),
                     (ball, ball_x, ball_y))
