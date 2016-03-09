@@ -88,6 +88,9 @@ class arcade:
         pygame.display.update(act_rects)
         previous_areas = update_areas[:]
 
+    def fdraw(self):
+        pygame.display.flip()
+
     def makeSurface(self, width, height, alpha = 0): # creates a surface with transparency
         if alpha:
             return pygame.Surface((width,height), pygame.SRCALPHA, 32).convert_alpha()
