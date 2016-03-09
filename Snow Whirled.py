@@ -4,7 +4,7 @@
 #Date: March 3, 2016
 #Description: 2-player snowboarding twirller
 
-import pygame, os, sys
+import pygame, os, sys, time
 from pygame.locals import *
 from Arcade import arcade
 from colours import *
@@ -25,7 +25,7 @@ def SnowWhirled(arcade):
     p2p1 = arcade.getImage(__file__,'p2p1.png')
     p2p2 = arcade.getImage(__file__,'p2p2.png')
     p2p3 = arcade.getImage(__file__,'p2p3.png')
-    p2p1 = arcade.getImage(__file__,'p2p4.png')
+    p2p4 = arcade.getImage(__file__,'p2p4.png')
     Down = arcade.getImage(__file__,'Down.bmp')
     Left = arcade.getImage(__file__,'Left.bmp')
     Up = arcade.getImage(__file__,'Up.bmp')
@@ -39,17 +39,22 @@ def SnowWhirled(arcade):
 
     arcade.initBackground(snowpic)
     
-    while True:
-        #Declaration of Variables        
+    while True:   
         position = 1
         Start = 0
-        TimeRem = 5000
+        TimeRem = 200
         
         while TimeRem > 0:
+            time.sleep(0.02)
             arcade.drawBackground(snowpic)
             arcade.getEvents()
-            label2 = Font1.render(str(score1), 1, (0,0,0))
-            label3 = Font1.render(str(score2), 1, (0,0,0))
+            
+            if TimeRem %10 == 0:
+                label4 = Font1.render(str(TimeRem/20), 1, (0,0,0))
+                label2 = Font1.render(str(score1), 1, (0,0,0))
+                label3 = Font1.render(str(score2), 1, (0,0,0))
+
+            arcade.draw ((label4, 500, 200))
 
             #Timer
             if Start == 1:
@@ -125,6 +130,7 @@ def SnowWhirled(arcade):
 
         if player == 2:
             break
+        position = 1
         player = 2
 
         
