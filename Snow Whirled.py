@@ -10,13 +10,14 @@ from Arcade import arcade
 from colours import *
 
 def SnowWhirled(arcade):
-
+ 
     arcade.setWindow(1250,900)
 
     player = 1
     score1 = 0
     score2 = 0
 
+    #images
     snowpic = arcade.getImage(__file__,'snowbackground.jpg')
     p1p1 = arcade.getImage(__file__,'p1p1.png')
     p1p2 = arcade.getImage(__file__,'p1p2.png')
@@ -31,6 +32,8 @@ def SnowWhirled(arcade):
     Up = arcade.getImage(__file__,'Up.bmp')
     Right = arcade.getImage(__file__,'Right.bmp')
 
+    
+    #Text
     Font1 = pygame.font.SysFont("monospace", 36)
     Font2 = pygame.font.SysFont("monospace", 18)
 
@@ -40,14 +43,17 @@ def SnowWhirled(arcade):
     label5 = Font2.render('Press Esc to Quit', 1, (0,0,0))
     label6 = Font1.render('Press Space to start', 1, (0,0,0))
     label7 = Font1.render('Time Left:', 1, (0,0,0))
-   
+  
     arcade.initBackground(snowpic)
     
     while True:   
         position = 1
         Start = 0
         TimeRem = 200
-        
+
+       
+
+         #Timer
         while TimeRem > 0:
             arcade.drawBackground(snowpic)
             arcade.getEvents()
@@ -57,7 +63,7 @@ def SnowWhirled(arcade):
                 label2 = Font1.render(str(score1), 1, (0,0,0))
                 label3 = Font1.render(str(score2), 1, (0,0,0))
 
-            #Timer
+           
             if Start == 1:
                 TimeRem -= 1
 
@@ -118,15 +124,15 @@ def SnowWhirled(arcade):
                 arcade.draw ((p1p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
 
             if Start == 0 and player == 2:
-                arcade.draw ((p2p1, 300, 650),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
+                arcade.draw ((p2p1, 300, 650),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
             elif position == 1 and Start == 1 and player == 2:
-                arcade.draw ((p2p1, 300, 350),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
+                arcade.draw ((p2p1, 300, 350),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
             elif position == 2 and Start == 1 and player == 2:
-                arcade.draw ((p2p2, 300, 350),(Left, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
+                arcade.draw ((p2p2, 300, 350),(Left, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
             elif position == 3 and Start == 1 and player == 2:
-                arcade.draw ((p2p3, 300, 350),(Up, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
+                arcade.draw ((p2p3, 300, 350),(Up, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
             elif position == 4 and Start == 1 and player == 2:
-                arcade.draw ((p2p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
+                arcade.draw ((p2p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
 
             #arcade.draw ((label6, 400, 200))
 
