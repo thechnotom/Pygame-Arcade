@@ -5,10 +5,12 @@
 
 import pygame, sys, os
 from pygame.locals import *
+from colours import *
 from importlib import import_module
 
 class arcade:
     global previous_areas; previous_areas = []
+    global act_rects; act_rects = []
 
     def __init__(self): # This is automatically run
         flags = HWSURFACE | DOUBLEBUF #| NOFRAME
@@ -21,11 +23,14 @@ class arcade:
         arcade.setWindow(600,600)
         bg = arcade.getImage('\\','window_icon.png', 1)
         arcade.initBackground(bg)
+        Arial32 = pygame.font.SysFont('Arial',32)
+        text1 = Arial32.render('Welcome to the Pygame Arcade!',False, white)
 
         while True:
 
             arcade.getEvents()
             arcade.drawBackground(bg)
+            arcade.draw((text1, 50, 50))
             mouse = arcade.getMousePos()
             mouseClicked = arcade.getMouseButton()
             if mouse[0] > 100 and mouse[1] > 100 and mouse[0] < 500 and mouse[1] < 500 and mouseClicked[0] == True:
@@ -77,6 +82,7 @@ class arcade:
 
     def draw(self, *args): #arg is (surface, x, y)
         global previous_areas
+        global act_rects
         update_areas = []
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
@@ -84,10 +90,16 @@ class arcade:
             area[0], area[1] = arg[1] - 10, arg[2] - 10
             area[2], area[3] = area[2] + 20, area[3] + 20
             update_areas.append(area)
-        act_rects = update_areas[:] + previous_areas[:]
-        pygame.display.update(act_rects)
+        act_rects.append(update_areas[:])
+        act_rects.append(previous_areas[:])
         previous_areas = update_areas[:]
-        
+
+    def update(self):
+        global act_rects
+        for i in act_rects:
+            pygame.display.update(i)
+        act_rects = []
+            
     def makeSurface(self, width, height, alpha = 0): # creates a surface with transparency
         if alpha:
             return pygame.Surface((width,height), pygame.SRCALPHA, 32).convert_alpha()

@@ -72,9 +72,10 @@ def Game(arcade):
         score_text = font1.render(str(score),True,maroon)
             
         arcade.drawBackground(background)
-        arcade.draw((player, player_x, player_y),
-                    (ball, ball_x, ball_y),
-                    (score_text, 20, 20))
+        arcade.draw((player, player_x, player_y))
+        arcade.draw((ball, ball_x, ball_y))
+        arcade.draw((score_text, 20, 20))
+        arcade.update()
 
 if __name__ == '__main__':
     pygame.init()

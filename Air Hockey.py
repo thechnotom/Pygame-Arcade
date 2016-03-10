@@ -112,6 +112,7 @@ def air_hockey(arcade):
         #Has the engine draw the moving peices
         arcade.draw ((paddle.surface,paddle.coor[0],paddle.coor[1]),
                      (puck.surface,puck.coor[0],puck.coor[1]))
+        arcade.update()
 
 #Runs game if executed from file instead of arcade
 if __name__ == '__main__':
