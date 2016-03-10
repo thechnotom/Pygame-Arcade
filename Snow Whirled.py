@@ -4,7 +4,7 @@
 #Date: March 3, 2016
 #Description: 2-player snowboarding twirller
 
-import pygame, os, sys
+import pygame, os, sys, time
 from pygame.locals import *
 from Arcade import arcade
 from colours import *
@@ -32,7 +32,8 @@ def SnowWhirled(arcade):
     Right = arcade.getImage(__file__,'Right.bmp')
 
     Font1 = pygame.font.SysFont("monospace", 36)
-    Font2 = pygame.font.SysFont("monospace", 18)
+    Font2 = pygame.font.SysFont("monospace", 16)
+    Font3 = pygame.font.SysFont("monospace", 54)
 
     label1 = Font1.render("Player 1 Score:           Player 2 Score:", 1, (0,0,0))
     label2 = Font1.render(str(score1), 1, (0,0,0))
@@ -40,6 +41,16 @@ def SnowWhirled(arcade):
     label5 = Font2.render('Press Esc to Quit', 1, (0,0,0))
     label6 = Font1.render('Press Space to start', 1, (0,0,0))
     label7 = Font1.render('Time Left:', 1, (0,0,0))
+    label8 = Font1.render("Player 1 Score:           Player 2 Score:", 1, (255,255,0))
+    label11 = Font2.render('Press Esc to Quit', 1, (255,255,0))
+    labelWin1 = Font3.render('Player 1 Wins!', 1, (255,255,0))
+    labelWin2 = Font3.render('Player 2 Wins!', 1, (255,255,0))
+    labelDraw = Font3.render('Draw!', 1, (255,255,0))
+    labelr = Font2.render('R to retry', 1, (255,255,0))
+
+    blackscreen = arcade.makeSurface(1250,900)
+    blackscreen.fill(black)
+    
    
     arcade.initBackground(snowpic)
     
@@ -131,9 +142,27 @@ def SnowWhirled(arcade):
             #arcade.draw ((label6, 400, 200))
 
         if player == 2:
+            label9 = Font1.render(str(score1), 1, (255,255,0))
+            label10 = Font1.render(str(score2), 1, (255,255,0))
             break
         position = 1
         player = 2
+
+    while True:
+        if score1 > score2:
+            arcade.draw((blackscreen, 0, 0),(label8, 100, 800),(label9, 420, 800),(label10, 1000, 800),(label11, 0, 0),(labelWin1, 400, 400),(labelr, 1130, 0))
+        elif score1 == score2:
+            arcade.draw((blackscreen, 0, 0),(label8, 100, 800),(label9, 420, 800),(label10, 1000, 800),(label11, 0, 0),(labelDraw, 550, 400),(labelr, 1130, 0))
+        elif score1 < score2:
+            arcade.draw((blackscreen, 0, 0),(label8, 100, 800),(label9, 420, 800),(label10, 1000, 800),(label11, 0, 0),(labelWin2, 400, 400),(labelr, 1130, 0))
+        pressed = arcade.getKey()
+        if pressed[K_ESCAPE]:
+            pygame.quit()
+            sys.exit()
+        if pressed[pygame.K_r]:
+            return
+        time.sleep(0.1)
+        
 
         
 if __name__ == '__main__':
