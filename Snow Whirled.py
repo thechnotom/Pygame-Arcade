@@ -107,26 +107,26 @@ def SnowWhirled(arcade):
                     score2 += 90
 
             if Start == 0 and player == 1:
-                arcade.draw ((p1p1, 300, 650),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p1p1, 300, 650),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 1 and Start == 1 and player == 1:
-                arcade.draw ((p1p1, 300, 350),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p1p1, 300, 350),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 2 and Start == 1 and player == 1:
-                arcade.draw ((p1p2, 300, 350),(Left, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p1p2, 300, 350),(Left, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 3 and Start == 1 and player == 1:
-                arcade.draw ((p1p3, 300, 350),(Up, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p1p3, 300, 350),(Up, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 4 and Start == 1 and player == 1:
-                arcade.draw ((p1p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p1p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
 
             if Start == 0 and player == 2:
-                arcade.draw ((p2p1, 300, 650),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p2p1, 300, 650),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 1 and Start == 1 and player == 2:
-                arcade.draw ((p2p1, 300, 350),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p2p1, 300, 350),(Down, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 2 and Start == 1 and player == 2:
-                arcade.draw ((p2p2, 300, 350),(Left, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p2p2, 300, 350),(Left, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 3 and Start == 1 and player == 2:
-                arcade.draw ((p2p3, 300, 350),(Up, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p2p3, 300, 350),(Up, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
             elif position == 4 and Start == 1 and player == 2:
-                arcade.draw ((p2p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 500, 100))
+                arcade.draw ((p2p4, 300, 350),(Right, 700, 300),(label4, 700, 100),(label1, 100, 800),(label2, 420, 800),(label3, 1000, 800),(label5, 0, 0),(label7, 480, 100))
 
             #arcade.draw ((label6, 400, 200))
 
