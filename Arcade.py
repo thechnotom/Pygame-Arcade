@@ -112,6 +112,8 @@ class arcade:
         pygame.mouse.set_visible(True)
         self.setWindow(600,600)
         self.UI()
+    def get_screen(self):
+        return self.screen
 
 
 
