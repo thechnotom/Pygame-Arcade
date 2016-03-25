@@ -16,26 +16,38 @@ class arcade:
         flags = HWSURFACE | DOUBLEBUF #| NOFRAME
         screen_x, screen_y = 600, 600
         self.screen = pygame.display.set_mode((screen_x,screen_y),flags)
-        pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\window_icon.png').convert_alpha())
+        pygame.display.set_icon(pygame.image.load(os.getcwd() + '\\resources\\window_icon.png').convert_alpha())
 
     def UI(arcade):
         arcade.setCaption(__file__)
-        arcade.setWindow(600,600)
-        bg = arcade.getImage('\\','window_icon.png', 1)
+        arcade.setWindow(1125,750)
+        bg = arcade.getImage('\\','UI_bg.png')
         arcade.initBackground(bg)
-        Arial32 = pygame.font.SysFont('Arial',32)
-        text1 = Arial32.render('Welcome to the Pygame Arcade!',False, white)
-
-        while True:
-
-            arcade.getEvents()
-            arcade.drawBackground(bg)
-            arcade.draw((text1, 50, 50))
-            mouse = arcade.getMousePos()
-            mouseClicked = arcade.getMouseButton()
-            if mouse[0] > 100 and mouse[1] > 100 and mouse[0] < 500 and mouse[1] < 500 and mouseClicked[0] == True:
-                #import_module('Test Game').Game(arcade)
-                import_module('Air Hockey').air_hockey(arcade)
+        UI_font1 = pygame.font.Font(os.getcwd() + '\\resources\\UI_font1.ttf', 48)
+        UI_font2 = pygame.font.Font(os.getcwd() + '\\resources\\UI_font1.ttf', 16)
+        text1 = UI_font1.render('Welcome to the Pygame Aracade!', False, white)
+        selections = [
+            UI_font2.render('1: Air Hockey', False, white),
+            UI_font2.render('2: Block Breaker', False, white)
+                      ]
+        try:
+            while True:
+                arcade.getEvents()
+                arcade.drawBackground(bg)
+                arcade.draw((text1, 177, 10))
+                for i in range(len(selections)):
+                    arcade.draw((selections[i], 563 - selections[i].get_rect().width//2, 100*(i+2)))
+                arcade.update()
+                pressed = arcade.getKey()
+                if pressed[K_1] or pressed[K_KP1]: game = 'Air Hockey'; import_module('Air Hockey').air_hockey(arcade)
+                if pressed[K_2] or pressed[K_KP2]: game = 'Block Breaker'; import_module('Block Breaker').Game(arcade)
+                #if pressed[K_3] or pressed[K_KP3]: game = ''; import_module('').#Game(arcade)
+                #if pressed[K_4] or pressed[K_KP4]: game = ''; import_module('').#Game(arcade)
+                #if pressed[K_5] or pressed[K_KP5]: game = ''; import_module('').#Game(arcade)
+                #if pressed[K_6] or pressed[K_KP6]: game = ''; import_module('').#Game(arcade)
+        except:
+            print('Error in game: ', game, '\nReturning to Arcade')
+            arcade.returnToArcade()
 
     #Framework
     def getEvents(self): # You NEED this to be called in your main loop

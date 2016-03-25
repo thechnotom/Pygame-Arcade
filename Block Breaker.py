@@ -55,7 +55,6 @@ def intersects(rect, r, center):
 def Game(arcade):
     screen = arcade.get_screen()
     arcade.setCaption(__file__)
-    font1 = pygame.font.SysFont('Arial',24, True)
     player = Paddle(teal, 100, 10)
     player.rect.x, player.rect.y = 250, 550
     player.set_speed(5)
@@ -113,11 +112,10 @@ def Game(arcade):
             Game(arcade)
         bricks.clear(screen, background)
         bricks.remove(kill_list)
-        pygame.display.update(bricks.draw(screen))   
         player.rect.clamp_ip(screen_rect) # Restricts player from going off-screen
         ball.rect.clamp_ip(screen_rect)
         sprites.clear(screen, background)
-        pygame.display.update([pygame.Rect(r[0]-10, r[1]-10, r[2]+20, r[3]+20) for r in sprites.draw(screen)])
+        pygame.display.update([pygame.Rect(r[0]-10, r[1]-10, r[2]+20, r[3]+20) for r in sprites.draw(screen)] + bricks.draw(screen))
         pygame.time.Clock().tick(120) # Set FPS
 
 
