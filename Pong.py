@@ -6,7 +6,7 @@ from colours import *
 def Game(arcade):
 
     arcade.setCaption(__file__)
-
+    arcade.setWindow(600, 600)
     font1 = pygame.font.SysFont('Arial',24, True)
     
     ball_x, ball_y = 290, 290
@@ -48,18 +48,17 @@ def Game(arcade):
                 if player_x < 500:
                     player_x += 2
             if pressed[K_ESCAPE]:
-                pygame.quit()
-                sys.exit()
+                arcade.returnToArcade()
                 
             if ball_y <= 0:
                 dy *= -1
-            if ball_y >= 550:
+            if ball_y >= 580:
                 dy *= -1
 
             if ball_x <= 0:
-                dx *= -1
+                dx = -1
             if ball_x >= 580:
-                dx *= -1  
+                dx = 1  
 
             if arcade.isColliding((player, player_x, player_y), (ball, ball_x, ball_y)):
                 if (ball_x + 10 < player_x + 25):
@@ -94,7 +93,7 @@ def Game(arcade):
                 if ai_x > 0:
                     ai_x -= 2
             
-            if ball_y >= 550:
+            if ball_y >= 580:
                 score -= 1
             elif ball_y < 0:
                 score += 1

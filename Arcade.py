@@ -30,20 +30,26 @@ class arcade:
         selections = [
             UI_font2.render('1: Air Hockey', False, white),
             UI_font2.render('2: Block Breaker', False, white),
-            UI_font2.render('3: Snow Whirled', False, white)
+            UI_font2.render('3: Snow Whirled', False, white),
+            UI_font2.render('4: Pong', False, white)
                       ]
+        selections_rects = [x.get_rect() for x in selections]
         game = 'Arcade'
         while True:
             arcade.getEvents()
             arcade.drawBackground(bg)
             arcade.draw((text1, 177, 10))
             for i in range(len(selections)):
-                arcade.draw((selections[i], 563 - selections[i].get_rect().width//2, 100*(i+2)))
+                selections_rects[i][0], selections_rects[i][1] = 563 - selections[i].get_rect().width//2, 100*(i+2)
+                arcade.draw((selections[i], selections_rects[i][0], selections_rects[i][1]))
             arcade.update()
             pressed = arcade.getKey()
-            if pressed[K_1] or pressed[K_KP1]: game = 'Air Hockey'; import_module('Air Hockey').air_hockey(arcade)
-            if pressed[K_2] or pressed[K_KP2]: game = 'Block Breaker'; import_module('Block Breaker').Game(arcade)
-            if pressed[K_3] or pressed[K_KP3]: game = 'Snow Whirled'; import_module('Snow Whirled').SnowWhirled(arcade)
+            mouse_pos = pygame.mouse.get_pos()
+            mouse_click = pygame.mouse.get_pressed()[0]
+            if pressed[K_1] or pressed[K_KP1] or (mouse_click and selections_rects[0].collidepoint(mouse_pos)): game = 'Air Hockey'; import_module('Air Hockey').air_hockey(arcade)
+            if pressed[K_2] or pressed[K_KP2] or (mouse_click and selections_rects[1].collidepoint(mouse_pos)): game = 'Block Breaker'; import_module('Block Breaker').Game(arcade)
+            if pressed[K_3] or pressed[K_KP3] or (mouse_click and selections_rects[2].collidepoint(mouse_pos)): game = 'Snow Whirled'; import_module('Snow Whirled').SnowWhirled(arcade)
+            if pressed[K_4] or pressed[K_KP4] or (mouse_click and selections_rects[3].collidepoint(mouse_pos)): game = 'Pong'; import_module('Pong').Game(arcade)
             if pressed[K_ESCAPE]:
                 pygame.quit()
                 sys.exit()
