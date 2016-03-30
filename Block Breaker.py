@@ -53,6 +53,7 @@ def intersects(rect, r, center):
     return corner_distance_sq <= r**2.0
 
 def Game(arcade):
+    arcade.setWindow(600,600)
     screen = arcade.get_screen()
     arcade.setCaption(__file__)
     player = Paddle(teal, 100, 10)
