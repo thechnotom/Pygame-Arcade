@@ -80,7 +80,7 @@ def Game(arcade):
         pressed = pygame.key.get_pressed()
         if pressed[K_RIGHT]:    player.move_right()
         if pressed[K_LEFT]:     player.move_left()
-        if pressed[K_ESCAPE]:   exit_game()
+        if pressed[K_ESCAPE]:   arcade.returnToArcade()
         if pressed[K_r]:        Game(arcade)
         if intersects(player.rect, ball.radius, (ball.rect.x + ball.radius, ball.rect.y + ball.radius)):
             ball.dy = abs(ball.dy)

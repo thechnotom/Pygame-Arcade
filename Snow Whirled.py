@@ -78,8 +78,7 @@ def SnowWhirled(arcade):
                 pressed = arcade.getKey()
                 
                 if pressed[K_ESCAPE]:
-                    pygame.quit()
-                    sys.exit()
+                    arcade.returnToArcade()
                     
                 if pressed[K_SPACE]:
                     Start = 1
@@ -156,11 +155,14 @@ def SnowWhirled(arcade):
             
 
         if R == 1:
+            arcade.getEvents()
             pressed = arcade.getKey()
             if pressed[K_ESCAPE]:
-                pygame.quit()
-                sys.exit()
+                arcade.returnToArcade()
             if pressed[pygame.K_r]:
+                score1 = 0
+                score2 = 0
+                player = 1
                 R = 0
             if score1 > score2:
                 arcade.draw((blackscreen, 0, 0),(label8, 100, 800),(label9, 420, 800),(label10, 1000, 800),(label11, 0, 0),(labelWin1, 400, 400),(labelr, 1130, 0))
@@ -169,7 +171,7 @@ def SnowWhirled(arcade):
             elif score1 < score2:
                 arcade.draw((blackscreen, 0, 0),(label8, 100, 800),(label9, 420, 800),(label10, 1000, 800),(label11, 0, 0),(labelWin2, 400, 400),(labelr, 1130, 0))
             arcade.update()
-            pygame.time.Clock().tick(60)
+            pygame.time.Clock().tick(30)
 
 
 if __name__ == '__main__':

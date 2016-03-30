@@ -29,31 +29,24 @@ class arcade:
         text1 = UI_font1.render('Welcome to the Pygame Aracade!', False, white)
         selections = [
             UI_font2.render('1: Air Hockey', False, white),
-            UI_font2.render('2: Block Breaker', False, white)
+            UI_font2.render('2: Block Breaker', False, white),
+            UI_font2.render('3: Snow Whirled', False, white)
                       ]
         game = 'Arcade'
-        try:
-            while True:
-                arcade.getEvents()
-                arcade.drawBackground(bg)
-                arcade.draw((text1, 177, 10))
-                for i in range(len(selections)):
-                    arcade.draw((selections[i], 563 - selections[i].get_rect().width//2, 100*(i+2)))
-                arcade.update()
-                pressed = arcade.getKey()
-                if pressed[K_ESCAPE]:
-                    pygame.quit()
-                    sys.exit()
-                if pressed[K_1] or pressed[K_KP1]: game = 'Air Hockey'; import_module('Air Hockey').air_hockey(arcade)
-                if pressed[K_2] or pressed[K_KP2]: game = 'Block Breaker'; import_module('Block Breaker').Game(arcade)
-                #if pressed[K_3] or pressed[K_KP3]: game = ''; import_module('').#Game(arcade)
-                #if pressed[K_4] or pressed[K_KP4]: game = ''; import_module('').#Game(arcade)
-                #if pressed[K_5] or pressed[K_KP5]: game = ''; import_module('').#Game(arcade)
-                #if pressed[K_6] or pressed[K_KP6]: game = ''; import_module('').#Game(arcade)
-        except :
-            print('Error in game: ', game, '\nReturning to Arcade')
-            arcade.returnToArcade()
-
+        while True:
+            arcade.getEvents()
+            arcade.drawBackground(bg)
+            arcade.draw((text1, 177, 10))
+            for i in range(len(selections)):
+                arcade.draw((selections[i], 563 - selections[i].get_rect().width//2, 100*(i+2)))
+            arcade.update()
+            pressed = arcade.getKey()
+            if pressed[K_1] or pressed[K_KP1]: game = 'Air Hockey'; import_module('Air Hockey').air_hockey(arcade)
+            if pressed[K_2] or pressed[K_KP2]: game = 'Block Breaker'; import_module('Block Breaker').Game(arcade)
+            if pressed[K_3] or pressed[K_KP3]: game = 'Snow Whirled'; import_module('Snow Whirled').SnowWhirled(arcade)
+            if pressed[K_ESCAPE]:
+                pygame.quit()
+                sys.exit()
     #Framework
     def getEvents(self): # You NEED this to be called in your main loop
         for event in pygame.event.get():
@@ -129,6 +122,7 @@ class arcade:
         pygame.mouse.set_visible(True)
         self.setWindow(600,600)
         self.UI()
+        
     def get_screen(self):
         return self.screen
 
