@@ -65,9 +65,9 @@ def Game(arcade):
     sprites.add(player, ball)
     bricks = pygame.sprite.RenderUpdates()
     for i in range(5):
-        for j in range(12):
+        for j in range(15):
             brick = Brick(red)
-            brick.rect.x, brick.rect.y = 5 + (50*j), 10 + 35*(i+1)
+            brick.rect.x, brick.rect.y = 40*j,25*(i+2)
             bricks.add(brick)
     background = pygame.Surface((600,600))
     background.fill(black,(0,0,600,600))
@@ -75,8 +75,7 @@ def Game(arcade):
     pygame.display.flip()
     screen_rect = screen.get_rect()
     score = 0
-    alive = True
-    while alive:
+    while True:
         arcade.getEvents()
         pressed = pygame.key.get_pressed()
         if pressed[K_RIGHT]:    player.move_right()
@@ -85,16 +84,15 @@ def Game(arcade):
         if pressed[K_r]:        Game(arcade)
         if intersects(player.rect, ball.radius, (ball.rect.x + ball.radius, ball.rect.y + ball.radius)):
             ball.dy = abs(ball.dy)
-            if asdf: #left zone
-                ball.dx = 4
-            if asdf: #center zone
+            if ball.rect[0] > player.rect[0] + 25 and ball.rect[0] + ball.rect[2] < player.rect[0] + player.rect[2] - 25: #center zone
                 if ball.dx > 0:
                     ball.dx = 3
                 else:
                     ball.dx = -3
-            if asdf: #right zone
-                ball.dx = -4
-                
+            elif ball.rect[0] < player.rect[0] + 25: #left zone
+                ball.dx = 4
+            elif ball.rect[0] + ball.rect[2] > player.rect[0] + player.rect[2] - 25: #right zone
+                ball.dx = -4   
         if ball.rect.x <= 0 or ball.rect.x >= 600 - ball.radius*2:
             ball.bounce_x()
         if ball.rect.y <= 0:
