@@ -29,7 +29,7 @@ def Game(arcade):
     cooldown = 8
     alive = True
 
-    dy = 3
+    dy = 4
     dx = 2
 
     score = 0
@@ -43,10 +43,10 @@ def Game(arcade):
             pressed = arcade.getKey()
             if pressed[K_a] or pressed[K_LEFT]:
                 if player_x > 0:
-                    player_x -= 5
+                    player_x -= 2
             if pressed[K_d] or pressed[K_RIGHT]:
                 if player_x < 500:
-                    player_x += 5
+                    player_x += 2
             if pressed[K_ESCAPE]:
                 pygame.quit()
                 sys.exit()
@@ -71,7 +71,7 @@ def Game(arcade):
                         dx = 2
                     else:
                         dx = -2
-                dy = 3
+                dy = 4
             elif arcade.isColliding((ai, ai_x, ai_y), (ball, ball_x, ball_y)):
                 if (ball_x + 10 < ai_x + 25):
                     dx = 3
@@ -82,15 +82,17 @@ def Game(arcade):
                         dx = 2
                     else:
                         dx = -2
-                dy = -3
+                dy = -4
 
             ball_y -= dy
             ball_x -= dx
 
             if ai_x + 25 < ball_x + 10:
-                ai_x += 5
+                if ai_x < 500:
+                    ai_x += 2
             elif ai_x + 100 > ball_x + 10:
-                ai_x -= 5
+                if ai_x > 0:
+                    ai_x -= 2
             
             if ball_y >= 550:
                 score -= 1
