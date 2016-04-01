@@ -5,6 +5,8 @@ from colours import *
 
 def Game(arcade):
 
+    blip = arcade.getSound(__file__, 'blip.wav')
+    
     arcade.setCaption(__file__)
     arcade.setWindow(600, 600)
     font1 = pygame.font.SysFont('Arial',24, True)
@@ -61,6 +63,7 @@ def Game(arcade):
                 dx = 1  
 
             if arcade.isColliding((player, player_x, player_y), (ball, ball_x, ball_y)):
+                blip.play()
                 if (ball_x + 10 < player_x + 25):
                     dx = 3
                 elif (ball_x + 10 > player_x + 75):
@@ -72,6 +75,7 @@ def Game(arcade):
                         dx = -2
                 dy = 4
             elif arcade.isColliding((ai, ai_x, ai_y), (ball, ball_x, ball_y)):
+                blip.play()
                 if (ball_x + 10 < ai_x + 25):
                     dx = 3
                 elif (ball_x + 10 > ai_x + 75):

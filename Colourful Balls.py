@@ -289,6 +289,7 @@ def game(arcade):
                     break
             if restart == True:
                 break
+            pygame.time.Clock().tick(240) #Set FPS
 
 
 if __name__ == '__main__':
