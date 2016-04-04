@@ -46,6 +46,7 @@ class BlockPair(pygame.sprite.Sprite):
         self.bottom = pygame.Surface((BlockPair.WIDTH, screen_height - r - BlockPair.GAP))
         self.bottom.fill(maroon)
         self.bottom_rect = self.bottom.get_rect()
+        self.bottom_rect.y = r + BlockPair.GAP
 
 
         self.image = pygame.Surface((BlockPair.WIDTH, screen_height), pygame.SRCALPHA, 32)
@@ -85,21 +86,31 @@ def Game(arcade):
     hit = False
     score = 0
 
+    # press space to start
+    # fix clamp_ip and bottom of window detection
+
     while True:
-        while hit:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == K_ESCAPE:
+        if hit:
+            score_str = 'Your score is: ' + str(score)
+            score_text = font1.render(score_str, False, purple)
+            background = pygame.Surface((screen_width, screen_height))
+            background.fill(black)
+            screen.blit(background, (0,0))
+            screen.blit(score_text, (screen_width // 2 - score_text.get_rect()[2] // 2, screen_height // 2 - score_text.get_rect()[3] // 2))
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
-                    if event.key == K_r:
-                        Game(arcade)
-            
-            pygame.display.flip()
-            clock.tick(60)
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == K_ESCAPE:
+                            pygame.quit()
+                            sys.exit()
+                        if event.key == K_r:
+                            Game(arcade)
+                
+                pygame.display.flip()
+                clock.tick(60)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -122,6 +133,7 @@ def Game(arcade):
         obstacles.update()
         for i in obstacles:
             if i.dokill == True: obstacles.remove(i)
+            print(i.top_rect, i.bottom_rect)
             if player.rect.colliderect(i.top_rect) or player.rect.colliderect(i.bottom_rect):
                 hit = True
                 print('hit')
