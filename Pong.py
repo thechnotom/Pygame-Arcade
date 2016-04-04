@@ -6,6 +6,8 @@ from colours import *
 def Game(arcade):
 
     blip = arcade.getSound(__file__, 'blip.wav')
+    blop = arcade.getSound(__file__, 'blop.wav')
+    blik = arcade.getSound(__file__, 'blik.wav')
     
     arcade.setCaption(__file__)
     arcade.setWindow(600, 600)
@@ -98,8 +100,10 @@ def Game(arcade):
                     ai_x -= 2
             
             if ball_y >= 580:
+                blop.play()
                 score -= 1
             elif ball_y < 0:
+                blik.play()
                 score += 1
 
         score_text = font1.render(str(score),True,maroon)
@@ -107,8 +111,8 @@ def Game(arcade):
         arcade.drawBackground(background)
         arcade.draw((player, player_x, player_y))
         arcade.draw((ball, ball_x, ball_y))
-        arcade.draw((score_text, 20, 20))
         arcade.draw((ai, ai_x, ai_y))
+        arcade.draw((score_text, 5, 5))
         arcade.update()
 
 if __name__ == '__main__':

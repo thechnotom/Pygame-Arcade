@@ -41,7 +41,7 @@ class arcade:
             arcade.drawBackground(bg)
             arcade.draw((text1, 177, 10))
             for i in range(len(selections)):
-                selections_rects[i][0], selections_rects[i][1] = 563 - selections[i].get_rect().width//2, 100*(i+2)
+                selections_rects[i][0], selections_rects[i][1] = 563 - selections[i].get_rect().width//2, 70*(i+2)
                 arcade.draw((selections[i], selections_rects[i][0], selections_rects[i][1]))
             arcade.update()
             pressed = arcade.getKey()
@@ -105,8 +105,8 @@ class arcade:
         for arg in args:
             self.screen.blit(arg[0],(arg[1],arg[2]))
             area = pygame.Surface.get_bounding_rect(arg[0])
-            area[0], area[1] = arg[1] - 10, arg[2] - 10
-            area[2], area[3] = area[2] + 20, area[3] + 20
+            area[0], area[1] = arg[1] - 20, arg[2] - 20
+            area[2], area[3] = area[2] + 40, area[3] + 40
             update_areas.append(area)
         act_rects.append(update_areas[:])
         act_rects.append(previous_areas[:])
@@ -140,8 +140,8 @@ if __name__ == '__main__':
     #If arcade.py is executed, open game selector UI
     #All games are executable as a standalone game.
     #All games are contained in a single .py file + resources (sprites, fonts, etc.)
+    pygame.mixer.init(22050,-16,2,16)
     pygame.init()
-    pygame.mixer.init(22050,-16,2,1024)
     arcade.UI(arcade())
 
 

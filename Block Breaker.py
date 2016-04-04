@@ -52,10 +52,18 @@ def intersects(rect, r, center):
     corner_distance_sq = corner_x**2.0 +corner_y**2.0
     return corner_distance_sq <= r**2.0
 
+def end(state):
+    if state == True: #win
+        pass
+    elif state == False: #lose
+        pass
+
 def Game(arcade):
     arcade.setWindow(600,600)
     screen = arcade.get_screen()
+    font1 = pygame.font.SysFont('Arial',24, True)
     arcade.setCaption(__file__)
+    blip = arcade.getSound(__file__, 'blip.wav')
     player = Paddle(teal, 100, 10)
     player.rect.x, player.rect.y = 250, 550
     player.set_speed(5)
@@ -64,6 +72,7 @@ def Game(arcade):
     sprites = pygame.sprite.RenderUpdates()
     sprites.add(player, ball)
     bricks = pygame.sprite.RenderUpdates()
+    state = None
     for i in range(5):
         for j in range(15):
             brick = Brick(red)
@@ -72,9 +81,9 @@ def Game(arcade):
     background = pygame.Surface((600,600))
     background.fill(black,(0,0,600,600))
     screen.blit(background, (0,0))
+    score = 0
     pygame.display.flip()
     screen_rect = screen.get_rect()
-    score = 0
     while True:
         arcade.getEvents()
         pressed = pygame.key.get_pressed()
@@ -93,12 +102,9 @@ def Game(arcade):
                 ball.dx = 4
             elif ball.rect[0] + ball.rect[2] > player.rect[0] + player.rect[2] - 25: #right zone
                 ball.dx = -4   
-        if ball.rect.x <= 0 or ball.rect.x >= 600 - ball.radius*2:
-            ball.bounce_x()
-        if ball.rect.y <= 0:
-            ball.bounce_y()
-        if ball.rect.y >= 590 - ball.radius*2:
-            Game(arcade)
+        if ball.rect.x <= 0 or ball.rect.x >= 600 - ball.radius*2: ball.bounce_x()
+        if ball.rect.y <= 0: ball.bounce_y()
+        if ball.rect.y >= 590 - ball.radius*2: end(False)
         ball.rect.x -= ball.dx
         ball.rect.y -= ball.dy
         kill_list = []
@@ -106,18 +112,21 @@ def Game(arcade):
             if intersects(brick.rect, ball.radius, (ball.rect.x + ball.radius, ball.rect.y + ball.radius)):
                 kill_list.append(brick)
                 ball.bounce_y()
+                blip.play()
                 score += 1
-        if len(bricks) == 0:
-            Game(arcade)
+        if len(bricks) == 0: end(True)
+        score_text = font1.render(str(score), False, maroon)
         bricks.clear(screen, background)
         bricks.remove(kill_list)
         player.rect.clamp_ip(screen_rect) # Restricts player from going off-screen
         ball.rect.clamp_ip(screen_rect)
-        sprites.clear(screen, background)
-        pygame.display.update([pygame.Rect(r[0]-10, r[1]-10, r[2]+20, r[3]+20) for r in sprites.draw(screen)] + bricks.draw(screen))
+        screen.blit(background, (0,0))
+        screen.blit(score_text, (5,5))
+        pygame.display.update([pygame.Rect(r[0]-10, r[1]-10, r[2]+20, r[3]+20) for r in sprites.draw(screen)] + bricks.draw(screen) + [pygame.Rect(5,5,30,30)])
         pygame.time.Clock().tick(120) # Set FPS
 
 
 if __name__ == '__main__':
+    pygame.mixer.init(22050,-16,2,16)
     pygame.init()
     Game(arcade())
