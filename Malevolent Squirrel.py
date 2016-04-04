@@ -56,7 +56,8 @@ class BlockPair(pygame.sprite.Sprite):
         
     def update(self):
         self.rect.x -= BlockPair.SPEED
-
+        self.top_rect.x = self.rect.x
+        self.bottom_rect.x = self.rect.x
         if self.rect.x < self.rect.width * -1:
             self.dokill = True
 
@@ -81,7 +82,24 @@ def Game(arcade):
     background2 = arcade.getImage(__file__, 'Background.png')
     b_scroll = 0
 
+    hit = False
+    score = 0
+
     while True:
+        while hit:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                    if event.key == K_r:
+                        Game(arcade)
+            
+            pygame.display.flip()
+            clock.tick(60)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -104,26 +122,25 @@ def Game(arcade):
         obstacles.update()
         for i in obstacles:
             if i.dokill == True: obstacles.remove(i)
+            if player.rect.colliderect(i.top_rect) or player.rect.colliderect(i.bottom_rect):
+                hit = True
+                print('hit')
         player.rect.clamp_ip(screen_rect)
-        
         screen.blit(background, (b_scroll, 0))
-        screen.blit(background2, (b_scroll - screen_width, 0))
-        b_scroll += 6
-        if b_scroll >= screen_width: b_scroll = 0
-        
+        screen.blit(background2, (b_scroll + 1600, 0))
+        b_scroll -= 4
+        if b_scroll <= 1600 * -1: b_scroll = 0
+
+        score_text = font1.render(str(score), False, purple)
+        screen.blit(score_text, (5, 5))        
         obstacles.draw(screen)
         sprites.draw(screen)
         pygame.display.flip()
-##        sprites.clear(screen, background)
-##        obstacles.clear(screen, background)
-##        pygame.display.update(
-##            [pygame.Rect(r[0]-10, r[1], r[2]+20, r[3]) for r in obstacles.draw(screen)] +
-##            [pygame.Rect(r[0], r[1]-10, r[2], r[3]+20) for r in sprites.draw(screen)])
         clock.tick(60)
 
 
 
 if __name__ == '__main__':
     pygame.init()
-    pygame.mixer.init(22050,-16,2,1024)
+    pygame.mixer.init(22050,-16,2,16)
     Game(arcade())
